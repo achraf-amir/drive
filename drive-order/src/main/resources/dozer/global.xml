@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <configuration>
+        <copy-by-references>
+            <copy-by-reference>
+                java.time.LocalDate
+            </copy-by-reference>
+            <copy-by-reference>
+                java.time.LocalTime
+            </copy-by-reference>
+            <copy-by-reference>
+                java.time.LocalDateTime
+            </copy-by-reference>
+        </copy-by-references>
+    </configuration>
+    <mapping >
+        <class-a>com.drive.common.beans.Order</class-a>
+        <class-b>com.drive.common.entities.OrderEntity</class-b>
+
+    </mapping>
+    <mapping>
+        <class-a>com.drive.common.beans.OrderRequest</class-a>
+        <class-b>com.drive.common.beans.Order</class-b>
+    <field-exclude>
+        <a>creationDateTime</a>
+        <b>creationDateTime</b>
+    </field-exclude>
+        <field-exclude>
+            <a >lastUpdateDateTime</a>
+            <b>lastUpdateDateTime</b>
+        </field-exclude>
+
+    </mapping>
+    </mappings>
+

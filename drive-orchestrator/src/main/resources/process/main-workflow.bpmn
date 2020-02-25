@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0lhuw40" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.4.1">
+  <bpmn:process id="main-workflow" isExecutable="true">
+    <bpmn:sequenceFlow id="SequenceFlow_1nu67ma" sourceRef="validate-order" targetRef="ExclusiveGateway_03t0yq0" />
+    <bpmn:sequenceFlow id="SequenceFlow_1q2nx1o" sourceRef="StartEvent_1" targetRef="validate-order" />
+    <bpmn:endEvent id="EndEvent_1gozp58">
+      <bpmn:incoming>SequenceFlow_1fqzq41</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1q2nx1o</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_03t0yq0">
+      <bpmn:incoming>SequenceFlow_1nu67ma</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0pbzt6r</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_15ksebs</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="EndEvent_0cxfbcl">
+      <bpmn:incoming>SequenceFlow_1eabhwa</bpmn:incoming>
+      <bpmn:errorEventDefinition errorRef="Error_1" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0pbzt6r" sourceRef="ExclusiveGateway_03t0yq0" targetRef="IntermediateCatchEvent_0ojwxmh">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.getVariable('isOrderValid') != true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="validate-order" name="validate order fields" calledElement="sub-order-validation">
+      <bpmn:extensionElements>
+        <camunda:in source="orderId" target="orderId" />
+        <camunda:out source="isOrderValid" target="isOrderValid" />
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1q2nx1o</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1nu67ma</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_17wzr8l" name="Wait 1 minutes">
+      <bpmn:incoming>SequenceFlow_15ksebs</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1fqzq41</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_10v2ldj">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_15ksebs" sourceRef="ExclusiveGateway_03t0yq0" targetRef="IntermediateCatchEvent_17wzr8l" />
+    <bpmn:sequenceFlow id="SequenceFlow_1fqzq41" sourceRef="IntermediateCatchEvent_17wzr8l" targetRef="EndEvent_1gozp58" />
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0ojwxmh" name="Wait 1 minutes">
+      <bpmn:incoming>SequenceFlow_0pbzt6r</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1eabhwa</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0euusmc">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1eabhwa" sourceRef="IntermediateCatchEvent_0ojwxmh" targetRef="EndEvent_0cxfbcl" />
+  </bpmn:process>
+  <bpmn:error id="Error_1" name="validation_error" errorCode="validation_error" camunda:errorMessage="VALIDATION_ERROR" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="main-workflow">
+      <bpmndi:BPMNEdge id="SequenceFlow_1q2nx1o_di" bpmnElement="SequenceFlow_1q2nx1o">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="330" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1nu67ma_di" bpmnElement="SequenceFlow_1nu67ma">
+        <di:waypoint x="430" y="120" />
+        <di:waypoint x="575" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1gozp58_di" bpmnElement="EndEvent_1gozp58">
+        <dc:Bounds x="932" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_03t0yq0_di" bpmnElement="ExclusiveGateway_03t0yq0" isMarkerVisible="true">
+        <dc:Bounds x="575" y="95" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0q1wltx_di" bpmnElement="EndEvent_0cxfbcl">
+        <dc:Bounds x="942" y="242" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0pbzt6r_di" bpmnElement="SequenceFlow_0pbzt6r">
+        <di:waypoint x="600" y="145" />
+        <di:waypoint x="600" y="260" />
+        <di:waypoint x="742" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="CallActivity_17nc7ym_di" bpmnElement="validate-order">
+        <dc:Bounds x="330" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_17wzr8l_di" bpmnElement="IntermediateCatchEvent_17wzr8l">
+        <dc:Bounds x="802" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="784" y="142" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_15ksebs_di" bpmnElement="SequenceFlow_15ksebs">
+        <di:waypoint x="625" y="120" />
+        <di:waypoint x="802" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fqzq41_di" bpmnElement="SequenceFlow_1fqzq41">
+        <di:waypoint x="838" y="120" />
+        <di:waypoint x="932" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_0ojwxmh_di" bpmnElement="IntermediateCatchEvent_0ojwxmh">
+        <dc:Bounds x="742" y="242" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="724" y="282" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1eabhwa_di" bpmnElement="SequenceFlow_1eabhwa">
+        <di:waypoint x="778" y="260" />
+        <di:waypoint x="942" y="260" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
