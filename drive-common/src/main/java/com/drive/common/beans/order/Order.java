@@ -1,7 +1,8 @@
-package com.drive.common.beans;
+package com.drive.common.beans.order;
 
 
 import com.drive.common.beans.keys.OrderCategoryType;
+import com.drive.common.beans.statut.Status;
 import com.drive.common.deserializer.DriveLocalDateTimeDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
@@ -31,4 +32,6 @@ public class Order implements Serializable {
 	private String orderCategory;
 	private OrderCategoryType orderCategoryType;
 	private Status orderStatut;
+	private List<OrderLineItem> orderLineItem;
+
 }

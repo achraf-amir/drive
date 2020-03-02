@@ -5,9 +5,9 @@ import com.drive.common.beans.messaging.Sender;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
-public class CategorizeOrderRequestSender extends Sender<BasicMessage> {
+public class ErrorOrderRequestSender extends Sender<BasicMessage> {
 
-	public CategorizeOrderRequestSender(
+	public ErrorOrderRequestSender(
 					RabbitTemplate template,
 					Queue queue
 	) {

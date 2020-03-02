@@ -23,45 +23,28 @@ import static com.drive.common.beans.keys.WorkFlowVarsNameKeys.ORDER_ID;
 public class ValidateOrderProcessor implements JavaDelegate {
 
 	private final Logger logger;
-	private final ObjectMapper objectMapper;
 	private final ValidateOrderRequestSender validateOrderRequestSender;
 	protected final RuntimeService runtimeService;
 
 	public ValidateOrderProcessor(
-					final ObjectMapper objectMapper,
 					ValidateOrderRequestSender validateOrderRequestSender,
 					 RuntimeService runtimeService
 
 					) {
 		this.validateOrderRequestSender = validateOrderRequestSender;
-		this.objectMapper = objectMapper;
 		logger = LoggerFactory.getLogger(ValidateOrderProcessor.class);
 		this.runtimeService = runtimeService;
 	}
 
 @Override
 	public void execute(DelegateExecution execution) {
-	logger.info("achrrrrrraf");
-	/*	Map<String, Object> vars = execution.getVariables();
+	logger.info("start excecute ValidateOrderProcessor");
 
-		if(MapUtils.isEmpty(vars)){
-			vars = new HashMap<>();
-		}
-
-		vars.put("isOrderValid", true);*/
 		BasicMessage basicMessage = BasicMessage.builder()
 						.orderId((String)execution.getVariable(ORDER_ID.toString()))
 		                                        .correlationId(execution.getProcessInstanceId())
 						.build();
-		// Serialize message to send by rabbitMQ message
-		 /*String message = null;
-		try {
-			message = objectMapper.writeValueAsString(basicMessage);
-		} catch(JsonProcessingException e) {
-			logger.error("cannot serialize message into Json");
-		}
-		vars.put("message", message);
-		execution.setVariables(vars);*/
+
 		validateOrderRequestSender.send(basicMessage);
 
 

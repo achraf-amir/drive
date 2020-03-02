@@ -1,4 +1,4 @@
-package com.drive.common.beans;
+package com.drive.common.beans.statut;
 
 import java.io.Serializable;
 

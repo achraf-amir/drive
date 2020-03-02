@@ -41,11 +41,11 @@
       <bpmn:errorEventDefinition />
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1som7hi" sourceRef="IntermediateThrowEvent_04avdwf" targetRef="EndEvent_0zi9d6z" />
-    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0uj3588" name="Wait 30 seconds">
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0uj3588" name="Wait 10 seconds">
       <bpmn:incoming>SequenceFlow_1n6y3xm</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0afjqdu</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_1r3m4iq">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0afjqdu" sourceRef="IntermediateCatchEvent_0uj3588" targetRef="EndEvent_0a59xf2" />

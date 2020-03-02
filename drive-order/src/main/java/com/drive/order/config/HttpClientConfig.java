@@ -1,7 +1,7 @@
 package com.drive.order.config;
 
 
-import com.drive.order.inteceptor.CorrelationIdInterceptor;
+import com.drive.common.inteceptor.CorrelationIdInterceptor;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

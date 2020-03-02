@@ -17,13 +17,13 @@
         </copy-by-references>
     </configuration>
     <mapping >
-        <class-a>com.drive.common.beans.Order</class-a>
+        <class-a>com.drive.common.beans.order.Order</class-a>
         <class-b>com.drive.common.entities.OrderEntity</class-b>
 
     </mapping>
     <mapping>
-        <class-a>com.drive.common.beans.OrderRequest</class-a>
-        <class-b>com.drive.common.beans.Order</class-b>
+        <class-a>com.drive.common.beans.order.OrderRequest</class-a>
+        <class-b>com.drive.common.beans.order.Order</class-b>
     <field-exclude>
         <a>creationDateTime</a>
         <b>creationDateTime</b>

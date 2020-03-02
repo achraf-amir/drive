@@ -11,6 +11,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
+import static com.drive.common.beans.statut.Status.fromStatusCode;
+
 @Service
 @RabbitListener(queues = "${drive.queue.request.validate-order}")
 public class ValidateOrderRequestListener {
@@ -37,7 +39,7 @@ public class ValidateOrderRequestListener {
 			messageBuilder.wfVar(WorkFlowVarsNameKeys.IS_ORDER_VALID.toString(), true);
 		} catch(Exception e) {
 			messageBuilder.wfVar(WorkFlowVarsNameKeys.IS_ORDER_VALID.toString(), false);
-			logger.error(
+					logger.error(
 							"orderId {}: Unable to validate order with message {}",
 							message.getOrderId(),
 							message);

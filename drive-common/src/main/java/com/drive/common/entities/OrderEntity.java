@@ -1,7 +1,9 @@
 package com.drive.common.entities;
 
 
-import com.drive.common.beans.Status;
+import com.drive.common.beans.utils.AttributeValuePair;
+import com.drive.common.beans.order.OrderLineItem;
+import com.drive.common.beans.statut.Status;
 import com.drive.common.beans.keys.OrderCategoryType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +36,8 @@ public class OrderEntity {
 	private String orderTypeCode;
 	private String orderCategory;
 	private OrderCategoryType orderCategoryType;
+	private List<OrderLineItem> orderLineItem;
+	private List<AttributeValuePair> additionalTradeItemIdentification;
 
 
 }

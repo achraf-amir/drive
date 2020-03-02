@@ -1,4 +1,4 @@
-package com.drive.common.beans;
+package com.drive.common.beans.statut;
 
 
 import com.drive.common.beans.type.StatusTypeCode;

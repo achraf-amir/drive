@@ -1,5 +1,6 @@
 package com.drive.common.beans.messaging;
 
+import com.drive.common.beans.order.UpdateOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +21,5 @@ public class BasicMessage implements Serializable {
 	@Singular("wfVar")
 	private Map<String, Object> wfVars;
 	private String correlationId;
-
+	private UpdateOrder orderToUpdate;
 }

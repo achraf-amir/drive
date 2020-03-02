@@ -1,12 +1,13 @@
 package com.drive.order.services.impl;
 
 
-import com.drive.common.beans.Order;
-import com.drive.common.beans.Status;
+import com.drive.common.beans.order.Order;
+import com.drive.common.beans.statut.Status;
 import com.drive.common.beans.keys.OrderCategoryType;
 import com.drive.common.entities.OrderEntity;
 import com.drive.order.repossitory.OrderRepository;
 import com.drive.order.services.OrdersCrudService;
+import org.apache.commons.collections.CollectionUtils;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,17 +61,25 @@ public class OrdersCrudServiceImpl implements OrdersCrudService {
 	public  Order update(String id, OrderCategoryType categoryType) {
 		final Optional<OrderEntity> maybeEntity = orderRepository.findById(id);
 		if(maybeEntity.isPresent()){
+
 			maybeEntity.get().setOrderCategoryType(categoryType);
 			return fromEntity(orderRepository.save(maybeEntity.get()));
 		}
 	return null;
+	}
 
+	@Override
+	public void update(Order order) {
+		 orderRepository.save(toEntity(order));
 	}
 
 	@Override
 	public  Order updateStatut(String id, Status status) {
 		final Optional<OrderEntity> maybeEntity = orderRepository.findById(id);
 		if(maybeEntity.isPresent()){
+			if (CollectionUtils.isEmpty(maybeEntity.get().getAdditionalStatus())){
+				maybeEntity.get().setAdditionalStatus(new ArrayList<>());
+			}
 			maybeEntity.get().getAdditionalStatus().add(status);
 			return fromEntity(orderRepository.save(maybeEntity.get()));
 		}

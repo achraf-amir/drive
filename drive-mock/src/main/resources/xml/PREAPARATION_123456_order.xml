@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+		<order>
+
+			<items>
+				<item line="1">
+					<externalReference>74746</externalReference>
+					<shortDescription>Eau de source état naturel CRISTALINE la bouteille d'1,5L</shortDescription>
+					<quantityPreparated >.000</quantityPreparated>
+					<unitAmount >.18</unitAmount>
+					<totalAmountPreparated >.00</totalAmountPreparated>
+				</item>
+				<item line="2">
+					<externalReference>620887</externalReference>
+					<shortDescription>Eau de source CRISTALINE le pack de 6 bouteilles d'1,5L</shortDescription>
+					<quantityPreparated >6.000</quantityPreparated>
+					<unitAmount >.18</unitAmount>
+					<totalAmountPreparated >1.08</totalAmountPreparated>
+				</item>
+				<item line="3">
+					<externalReference>5155384</externalReference>
+					<shortDescription>Œufs bio  CARREFOUR BIO la boite de 4</shortDescription>
+					<quantityPreparated >1.000</quantityPreparated>
+					<unitAmount >1.44</unitAmount>
+					<totalAmountPreparated >1.44</totalAmountPreparated>
+				</item>
+				<item line="4">
+					<externalReference>3867906</externalReference>
+					<shortDescription>Eau minérale naturelle MONT ROUCOUS la bouteille d'1L</shortDescription>
+					<quantityPreparated >6.000</quantityPreparated>
+					<unitAmount >.45</unitAmount>
+					<totalAmountPreparated >2.70</totalAmountPreparated>
+				</item>
+				<item line="5">
+					<externalReference>6140823</externalReference>
+					<shortDescription>Eau minérale naturelle CONTREX la bouteille d'1,5L</shortDescription>
+					<quantityPreparated >.000</quantityPreparated>
+					<unitAmount >.45</unitAmount>
+					<totalAmountPreparated >.00</totalAmountPreparated>
+				</item>
+				<item line="6">
+					<externalReference>633303</externalReference>
+					<shortDescription>ROLLER G2 NOIR X2</shortDescription>
+					<quantityPreparated >1.000</quantityPreparated>
+					<unitAmount>4.20</unitAmount>
+					<totalAmountPreparated >4.20</totalAmountPreparated>
+				</item>
+			</items>
+
+				<totalOrderAmountPreparated>9.42</totalOrderAmountPreparated>
+
+		</order>

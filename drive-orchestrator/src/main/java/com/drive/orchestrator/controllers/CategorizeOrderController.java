@@ -9,26 +9,24 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.drive.common.beans.keys.WorkFlowVarsNameKeys.CATEGORIZATION;
-import static com.drive.common.beans.keys.WorkFlowVarsNameKeys.IS_ORDER_VALID;
 import static com.drive.common.beans.keys.WorkFlowVarsNameKeys.ORDER_ID;
 
 @Service
-@RabbitListener(queues = "${drive.queue.response.validate-order}")
-public class ValidateOrderController {
+@RabbitListener(queues = "${drive.queue.response.categorize-order}")
+public class CategorizeOrderController {
 
 	private final Logger logger;
 	private final RuntimeService runtimeService;
 
-	public ValidateOrderController(
+	public CategorizeOrderController(
 					RuntimeService runtimeService
 	) {
 		this.runtimeService = runtimeService;
-		logger = LoggerFactory.getLogger(ValidateOrderController.class);
+		logger = LoggerFactory.getLogger(CategorizeOrderController.class);
 	}
 
 	@RabbitHandler
@@ -47,7 +45,7 @@ public class ValidateOrderController {
 		logger.info(
 						"orderId {}, correlationId {} : received on queue  and value {}",
 						orderId, correlationId, basicMessage
-		);Message_Categorize_Order
+		);
 
 		runtimeService.createMessageCorrelation("Message_Categorize_Order") //
 		              .processInstanceVariableEquals(ORDER_ID.toString(), orderId) //

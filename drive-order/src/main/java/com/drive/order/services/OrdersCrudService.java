@@ -1,8 +1,8 @@
 package com.drive.order.services;
 
 
-import com.drive.common.beans.Order;
-import com.drive.common.beans.Status;
+import com.drive.common.beans.order.Order;
+import com.drive.common.beans.statut.Status;
 import com.drive.common.beans.keys.OrderCategoryType;
 
 public interface OrdersCrudService {
@@ -12,4 +12,5 @@ public interface OrdersCrudService {
 	Order update(String id, OrderCategoryType categoryType);
 	Order updateStatut(String id, Status status);
 
+	void update(Order order);
 }

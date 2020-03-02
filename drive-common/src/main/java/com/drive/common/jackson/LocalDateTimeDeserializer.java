@@ -10,9 +10,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Author: cpetit.
- */
+
 public class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
 
 	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;

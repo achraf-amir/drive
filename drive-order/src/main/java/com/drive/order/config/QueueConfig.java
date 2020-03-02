@@ -1,6 +1,7 @@
 package com.drive.order.config;
 
 import com.drive.order.services.sender.CaptureOrderRequestSender;
+import com.drive.order.services.sender.CategorizeOrderSender;
 import com.drive.order.services.sender.ValidateOrderSender;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -29,6 +30,15 @@ public class QueueConfig {
 	) {
 		final Queue queue = new Queue(queueName);
 		return new ValidateOrderSender(rabbitTemplate, queue);
+	}
+
+	@Bean
+	public CategorizeOrderSender categorizeOrderSender(
+					@Value("${drive.queue.response.categorize-order}") String queueName,
+					RabbitTemplate rabbitTemplate
+	) {
+		final Queue queue = new Queue(queueName);
+		return new CategorizeOrderSender(rabbitTemplate, queue);
 	}
 
 }
