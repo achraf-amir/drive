@@ -1,0 +1,26 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: google
+# Spring Security configuration
+security:
+  oauth2:
+    client:
+      clientId: 522885428819-ql0rqfa1n0gk1cn04svko68gvllon4ls.apps.googleusercontent.com
+      clientSecret: jWruduWm1_Jy55sRntgyW7PD
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      redirectUriTemplate: http://localhost:8181/user
+      pre-established-redirect-uri: http://localhost:8181/google/login
+
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
+# Server configuration
+server:
+  port: 8181
